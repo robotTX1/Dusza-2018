@@ -6,19 +6,24 @@ import java.nio.file.Path;
 public class Main {
 
     public static void main(String[] args) {
-        Path path = FileSystems.getDefault().getPath("Data", "alaprajz1.txt");
+        Path basePath = FileSystems.getDefault().getPath("Data");
 
-        IOHandler ioHandler = new IOHandler(path);
+        CommandLineInterface cli = new CommandLineInterface(basePath);
 
-        int[][] result = ioHandler.readFile();
+        while(true) {
+            Path path = cli.start();
 
-        for(int y = 0; y<result[0].length; y++) {
-            for(int x = 0; x<result.length; x++) {
-                System.out.print(result[x][y]);
+            if(path == null) {
+                System.exit(0);
             }
-            System.out.println();
+
+            IOHandler ioHandler = new IOHandler(path);
+
+            int[][] matrix = ioHandler.readFile();
+
+            HouseProcessor houseProcessor = new HouseProcessor(matrix);
+            houseProcessor.printHousePlan();
+            System.out.println("\n\n");
         }
-
-
     }
 }
