@@ -13,23 +13,33 @@ public class IOHandler {
         this.path = path;
     }
 
-    public int[][] readFile() {
-        int[][] result = null;
-        List<String> list = new ArrayList<>();
+    public List<String> readLines() {
+        List<String> result = new ArrayList<>();
+
         try(Scanner input = new Scanner(path)) {
-            int x, y;
-            y = input.nextInt();
-            x = input.nextInt();
-            input.nextLine();
-
-            result = new int[x][y];
-
             while(input.hasNextLine()) {
-                list.add(input.nextLine());
+                result.add(input.nextLine());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return result;
+    }
+
+    public int[][] readFile() {
+        int[][] result;
+        List<String> list = readLines();
+
+        int w,h;
+
+        String[] split = list.get(0).split(" ");
+        list.remove(0);
+
+        h = Integer.parseInt(split[0]);
+        w = Integer.parseInt(split[1]);
+
+        result = new int[w][h];
 
         for(int y = 0; y<list.size(); y++) {
             for(int x=0; x<list.get(y).length(); x++) {
