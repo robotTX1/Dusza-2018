@@ -9,25 +9,21 @@ public class Main {
         Path basePath = FileSystems.getDefault().getPath("Data");
 
         CommandLineInterface cli = new CommandLineInterface(basePath);
-        Path path = cli.start();
 
-        if(path == null) {
-            System.exit(0);
-        }
+        while(true) {
+            Path path = cli.start();
 
-        IOHandler ioHandler = new IOHandler(path);
-
-        int[][] matrix = ioHandler.readFile();
-
-        for(int h = 0; h < matrix.length; h++) {
-            for(int w = 0; w< matrix[0].length; w++) {
-                System.out.print(matrix[h][w]);
+            if(path == null) {
+                System.exit(0);
             }
-            System.out.println();
+
+            IOHandler ioHandler = new IOHandler(path);
+
+            int[][] matrix = ioHandler.readFile();
+
+            HouseProcessor houseProcessor = new HouseProcessor(matrix);
+            houseProcessor.printHousePlan();
+            System.out.println("\n\n");
         }
-
-        Magic magic = new Magic(matrix);
-        magic.getPlan();
-
     }
 }
