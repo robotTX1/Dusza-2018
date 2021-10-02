@@ -22,7 +22,7 @@ public class HouseProcessor {
         int roomCount = countRooms();
         for(int y=0; y<HEIGHT; y++) {
             for(int x=0; x<WIDTH; x++) {
-                if(processedMatrix[y][x] == null) System.out.print(".");
+                System.out.print(processedMatrix[y][x].getType());
             }
             System.out.println();
         }
@@ -83,7 +83,6 @@ public class HouseProcessor {
         for(int i = y; i <= y+1; i++) {
             for(int j = x; j <= x+ 1; j++) {
                 if(emptySpace(j,i) || processedMatrix[i][j] != null) return false;
-                System.out.println(matrix[i][j]);
             }
         }
         return true;
