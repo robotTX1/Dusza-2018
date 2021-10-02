@@ -19,11 +19,15 @@ public class Main {
 
         int[][] matrix = ioHandler.readFile();
 
-        for(int y = 0; y<matrix[0].length; y++) {
-            for(int x = 0; x<matrix.length; x++) {
-                System.out.print(matrix[x][y]);
+        for(int h = 0; h < matrix.length; h++) {
+            for(int w = 0; w< matrix[0].length; w++) {
+                System.out.print(matrix[h][w]);
             }
             System.out.println();
         }
+
+        Magic magic = new Magic(matrix);
+        magic.getPlan();
+
     }
 }

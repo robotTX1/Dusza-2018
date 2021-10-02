@@ -16,8 +16,6 @@ public class CommandLineInterface {
         this.path = path;
     }
 
-
-
     public Path start() {
         Scanner input = new Scanner(System.in);
 

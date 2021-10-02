@@ -39,11 +39,11 @@ public class IOHandler {
         h = Integer.parseInt(split[0]);
         w = Integer.parseInt(split[1]);
 
-        result = new int[w][h];
+        result = new int[h][w];
 
         for(int y = 0; y<list.size(); y++) {
             for(int x=0; x<list.get(y).length(); x++) {
-                result[x][y] = Integer.parseInt(String.valueOf(list.get(y).charAt(x)));
+                result[y][x] = Integer.parseInt(String.valueOf(list.get(y).charAt(x)));
             }
         }
 
