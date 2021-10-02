@@ -32,4 +32,18 @@ public class Magic {
         }
         return out;
     }
+
+    private void findWalls() {
+        List<int[]> coords = recursiveSearch(0,0,0);
+
+        for (int[] c : coords) {
+            ProcessedMatrix[c[0]][c[1]] = ObjectType.WALL;
+            matrix[c[0]][c[1]] = 0;
+        }
+
+    }
+
+    private void findRooms() {
+
+    }
 }
